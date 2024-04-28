@@ -25,7 +25,7 @@
       "url": "_framework\/icudt_no_CJK.dat"
     },
     {
-      "hash": "sha256-oUjtbR8KFUlZksT3+UXhetP68w2RBW85yNM\/+SCqEoc=",
+      "hash": "sha256-jDCn6xJlCPxVJhsdAorVCaly3OsWhTd1rbCz8S1riDU=",
       "url": "_framework\/blazor.boot.json"
     },
     {
@@ -37,7 +37,7 @@
       "url": "_framework\/dotnet.native.wasm"
     },
     {
-      "hash": "sha256-pkz1fQSke70bdoqF54tvgUOYO7OJdWM7SbMBacDXAZ4=",
+      "hash": "sha256-gx+bIK0V8bkAv4P3+nSwQU2lb5NF0Y91Ej0lU7sNUlM=",
       "url": "_framework\/BlazorPocketDictionary.wasm"
     },
     {
@@ -181,7 +181,7 @@
       "url": "apple-touch-icon.png"
     },
     {
-      "hash": "sha256-4GmlUSNuGwB8mN1Abr0hllDlzqfNCb9v9n6ZgePdsDU=",
+      "hash": "sha256-GcUb8WZS1hIGUKps03c\/\/gcAy22pgGcawyO7vv68luA=",
       "url": "css\/main.min.css"
     },
     {
@@ -237,5 +237,5 @@
       "url": "manifest.json"
     }
   ],
-  "version": "IwPtXDpl"
+  "version": "lAQTiE3s"
 };
