@@ -2,8 +2,91 @@
 
 <PageTitle>Pocket Dictionary</PageTitle>
 
-<div class="h-screen flex flex-col font-[monospace] justify-center items-center gap-6">
-    <h1 class="text-8xl font-bold tracking-widest">Hello World!</h1>
-    <p class="text-5xl">Welcome to your new app.</p>
-    <p class="text-7xl">😁</p>
-</div>
+@if (!Loading && WordDefinition.Word.Equals(""))
+{
+    <div class="h-screen flex flex-col justify-center items-center text-center">
+        <p
+            class="mt-40 max-sm:mt-28 text-8xl max-sm:text-5xl tracking-widest font-sans font-bold drop-shadow-lg dark:drop-shadow-2xl">
+            Pocket Dictionary
+        </p>
+        <input 
+            type="text"
+            class="mt-24 max-sm:mt-12 p-5 max-sm:p-3 text-5xl max-sm:text-[1.5rem] max-sm:leading-6 border border-[#AEAEAE] rounded-3xl max-sm:rounded-2xl font-sans h-[5.5rem] max-sm:h-[3.4rem] w-[45rem] max-sm:w-[20rem] text-center focus:outline-none shadow-lg dark:shadow-2xl tracking-wider font-thin"
+            @bind="@SearchedWord" 
+            @bind:event="oninput" 
+            @onkeydown="@(async (e) => {
+                if ((e.Key.Equals("Enter") || e.Key.Equals("Go")) && !SearchedWord.Equals(""))
+                {
+                    await GetWordDefinition(SearchedWord.ToLower());
+                }
+            })"
+            placeholder="Enter a word..." 
+            @ref="@_inputField"
+        />
+        <button
+            class="mt-10 max-sm:mt-6 cursor-pointer disabled:cursor-default hover:text-[#26272A] dark:hover:text-white disabled:text-zinc-500 dark:disabled:text-zinc-600"
+            title="Search Word" 
+            @onclick="@(() => GetWordDefinition(SearchedWord.ToLower()))"
+            disabled="@(SearchedWord.Equals(""))"
+        >
+            <Icons IconType="Icons.IconTypes.SearchIcon" />
+        </button>
+        <div class="mt-24 max-sm:mt-12 h-[12rem] w-[45%] max-sm:h-[11.5rem] max-sm:w-[20rem] flex justify-center items-start">
+            @if (IsError)
+            {
+                <WordDefinitionError ErrorText="@ErrorText" CloseError="@CloseError" />
+            }
+        </div>
+    </div>
+}
+else if (Loading)
+{
+    <WordDefinitionLoader />
+}
+else if (!Loading && !WordDefinition.Word.Equals(""))
+{
+    <WordDefinitionDisplay WordDefinition="@WordDefinition" SearchWord="@SearchSpecificWord" RefreshSearch="@RefreshSearch"/>
+}
+
+@code {
+    private ElementReference _inputField;
+    public string SearchedWord { get; set; } = "";
+    public WordDefinition WordDefinition { get; set; } = new();
+    public bool Loading { get; set; } = false;
+    public bool IsError { get; set; } = false;
+    public string ErrorText { get; set; } = "";
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        if (!Loading && WordDefinition.Word.Equals(""))
+        {
+            await _inputField.FocusAsync();
+        }
+    }
+    
+    public async Task GetWordDefinition(string word)
+    {
+        Loading = true;
+        StateHasChanged();
+        WordDefinition = await FetchWordDefinitionAsync(word);
+        if (WordDefinition.Word.Equals(""))
+        {
+            SearchedWord = "";
+            ErrorText = $"Either '{word}' isn't there in this dictionary or there's a technical problem. You can try again or use the internet for this word.";
+            IsError = true;
+        }
+        Loading = false;
+        StateHasChanged();
+    }
+
+    public void CloseError() => IsError = false;
+
+    public async Task SearchSpecificWord(string word) => await GetWordDefinition(word.ToLower());
+
+    public void RefreshSearch() 
+    {
+        IsError = false;
+        SearchedWord = "";
+        WordDefinition = new();
+    }
+}

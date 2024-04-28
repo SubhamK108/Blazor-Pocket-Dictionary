@@ -1,0 +1,17 @@
+<div class="text-[1.6rem] max-sm:text-[1.1rem] p-[0.8rem] max-sm:p-[0.6rem] rounded-3xl shadow-lg dark:shadow-2xl bg-red-300 dark:bg-red-950">
+    <div class="flex justify-center items-center text-left gap-3 max-sm:gap-2">
+        <div 
+            class="hover:text-[#26272A] dark:hover:text-white cursor-pointer" 
+            title="Close Error"
+            @onclick="@CloseError"
+        >
+            <Icons IconType="Icons.IconTypes.CloseIcon" />
+        </div>
+        <p>@ErrorText</p>
+    </div>
+</div>
+
+@code {
+    [Parameter] public string ErrorText { get; set; } = "";
+    [Parameter] public Action CloseError { get; set; } = () => { };
+}

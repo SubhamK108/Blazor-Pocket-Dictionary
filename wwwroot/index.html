@@ -54,6 +54,13 @@
       <a class="dismiss">🗙</a>
     </div> -->
 
+    <!-- Script for playing Audio & initiating an element's animation -->
+    <script type="text/javascript">
+      async function playAudio(audioUrl) {
+        await new Audio(audioUrl).play();
+      }
+    </script>
+
     <script src="_framework/blazor.webassembly.js"></script>
     <script>
       navigator.serviceWorker.register("service-worker.js");
