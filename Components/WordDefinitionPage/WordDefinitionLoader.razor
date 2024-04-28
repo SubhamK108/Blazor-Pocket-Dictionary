@@ -1,17 +1,17 @@
 <div class="animate-pulse">
     <div class="h-full flex flex-col justify-center items-center mb-5 max-sm:mb-4">
-        <div
-            class="w-[4rem] h-[4rem] max-sm:w-[2.5rem] max-sm:h-[2.5rem] bg-zinc-400 dark:bg-zinc-700 rounded-full shadow-lg dark:shadow-2xl mt-6 max-sm:mt-4 hover:text-[#26272A] dark:hover:text-white">
+        <div class="w-[4rem] h-[4rem] max-sm:w-[2.5rem] max-sm:h-[2.5rem] bg-zinc-400 dark:bg-zinc-700 rounded-full shadow-lg dark:shadow-2xl mt-6 max-sm:mt-4 hover:text-[#26272A] dark:hover:text-white">
         </div>
         <div class="bg-zinc-300 dark:bg-zinc-800 mt-5 max-sm:mt-3 flex flex-col justify-center items-center text-center gap-4 max-sm:gap-2 p-7 px-9 max-sm:p-4 max-sm:px-5 shadow-xl rounded-3xl">
-            <div
-                class="w-[25rem] h-[5rem] max-sm:w-[10rem] max-sm:h-[3rem] bg-zinc-400 dark:bg-zinc-700 rounded-2xl max-sm:rounded-xl font-bold tracking-wider text-7xl max-sm:text-[1.8rem] shadow-lg dark:shadow-2xl">
+            <div class="w-[25rem] h-[5rem] max-sm:w-[10rem] max-sm:h-[3rem] bg-zinc-400 dark:bg-zinc-700 rounded-2xl max-sm:rounded-xl font-bold tracking-wider text-7xl max-sm:text-[1.8rem] shadow-lg dark:shadow-2xl">
             </div>
             <div class="flex flex-row justify-center items-center gap-2 max-sm:gap-1">
                 @foreach (int i in (List<int>)[1, 2])
                 {
-                    <div key="@Guid.NewGuid()"
-                        class="w-[3rem] h-[3rem] max-sm:w-[2rem] max-sm:h-[2rem] bg-zinc-400 dark:bg-zinc-700 rounded-full shadow-lg dark:shadow-2xl hover:text-[#26272A] dark:hover:text-white">
+                    <div 
+                        key="@Guid.NewGuid()"
+                        class="w-[3rem] h-[3rem] max-sm:w-[2rem] max-sm:h-[2rem] bg-zinc-400 dark:bg-zinc-700 rounded-full shadow-lg dark:shadow-2xl hover:text-[#26272A] dark:hover:text-white"
+                    >
                     </div>
                 }
             </div>
