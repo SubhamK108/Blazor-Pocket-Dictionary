@@ -1,7 +1,7 @@
 {
   "mainAssemblyName": "BlazorPocketDictionary",
   "resources": {
-    "hash": "sha256-9gqPiSVBTsp1wrTTJrrCNT61mfehNPirKMkN8nMTs4c=",
+    "hash": "sha256-LQJGEYQR+84xjEyjJxP/X0v61UH5H8oogkoVK9BZzwY=",
     "jsModuleNative": {
       "dotnet.native.8.0.4.5juewj20w2.js": "sha256-BsaBOB7rs58dTJYIDzgRAFJi68fZSgclGo8zLpuoRns="
     },
@@ -17,7 +17,7 @@
       "icudt_no_CJK.dat": "sha256-L7sV7NEYP37/Qr2FPCePo5cJqRgTXRwGHuwF5Q+0Nfs="
     },
     "assembly": {
-      "BlazorPocketDictionary.wasm": "sha256-LdyAzwRPQQ2GKBn+my9TyFqM2d7PjOw9pDh01l19I+U=",
+      "BlazorPocketDictionary.wasm": "sha256-pkz1fQSke70bdoqF54tvgUOYO7OJdWM7SbMBacDXAZ4=",
       "Microsoft.AspNetCore.Components.wasm": "sha256-ZGaJL8Xk/25sEdQZTHaELSG4MZo6h6kkT69CUMrpPOk=",
       "Microsoft.AspNetCore.Components.Web.wasm": "sha256-8fXdl1Vrg6c2Y2ybj2N+BgmhX/y/8H1vTEGS6IFoblo=",
       "Microsoft.AspNetCore.Components.WebAssembly.wasm": "sha256-kZSJV9ON9UL924dyAnAeoFHZXExv5A/OCxTHlMc+3fQ=",
