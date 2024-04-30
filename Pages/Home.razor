@@ -17,7 +17,7 @@
             @onkeydown="@(async (e) => {
                 if ((e.Key.Equals("Enter") || e.Key.Equals("Go")) && !SearchedWord.Equals(""))
                 {
-                    await GetWordDefinition(SearchedWord.ToLower());
+                    await GetWordDefinition(SearchedWord);
                 }
             })"
             placeholder="Enter a word..." 
@@ -26,7 +26,7 @@
         <button
             class="mt-10 max-sm:mt-6 cursor-pointer disabled:cursor-default hover:text-[#26272A] dark:hover:text-white disabled:text-zinc-500 dark:disabled:text-zinc-600"
             title="Search Word" 
-            @onclick="@(() => GetWordDefinition(SearchedWord.ToLower()))"
+            @onclick="@(() => GetWordDefinition(SearchedWord))"
             disabled="@(SearchedWord.Equals(""))"
         >
             <Icons IconType="Icons.IconTypes.SearchIcon" />
@@ -68,11 +68,15 @@ else if (!Loading && !WordDefinition.Word.Equals(""))
     {
         Loading = true;
         StateHasChanged();
-        WordDefinition = await FetchWordDefinitionAsync(word);
-        if (WordDefinition.Word.Equals(""))
+        (WordDefinition, ResponseResult responseResult) = await FetchWordDefinitionAsync(word);
+        if (responseResult != ResponseResult.SUCCESS)
         {
             SearchedWord = "";
-            ErrorText = $"Either '{word}' isn't there in this dictionary or there's a technical problem. You can try again or use the internet for this word.";
+            ErrorText = responseResult switch
+            {
+                ResponseResult.NOT_FOUND => $"Oops! '{word}' isn't there in this dictionary, you have to use the internet for this word. Sorry. 😞",
+                _ => "The Server is facing some problems right now, please try again a bit later, or use the internet for this word. Sorry. 😞"
+            };
             IsError = true;
         }
         Loading = false;
@@ -81,7 +85,7 @@ else if (!Loading && !WordDefinition.Word.Equals(""))
 
     public void CloseError() => IsError = false;
 
-    public async Task SearchSpecificWord(string word) => await GetWordDefinition(word.ToLower());
+    public async Task SearchSpecificWord(string word) => await GetWordDefinition(word);
 
     public void RefreshSearch() 
     {
